@@ -9,6 +9,13 @@ int main() {
 }
 
 void comute_matching(graph& G, matching& M) {
+  M.init();  // make sure M is empty
+  G.init_dual_vars();
+  bool augmented = true;
+  while (augmented) {
+    augmented = find_augmenting_path(G, M);
+  }
+   
 
 
 
