@@ -15,9 +15,15 @@ void comute_matching(graph& G, matching& M) {
   while (augmented) {
     augmented = find_augmenting_path(G, M);
   }
-   
+}
+
+bool find_augmenting_path(graph& G, matching M) {
+bool found_it = false;
+while (!found_it) {
 
 
 
+}
+return found_it;
 
 }
