@@ -28,6 +28,16 @@ class Edge {
 
 };
 
+class bbRec: public base_priority {
+
+
+};
+
+class buRec: public base_Priority {
+
+
+};
+
 typedef lazy_insert_leftist<bbRec> bbPQ_t;
 typedef lazy_insert_leftist<buRec> buPQ_t;
 typedef lazy_insert_leftist<zRec> redZPQ_t;

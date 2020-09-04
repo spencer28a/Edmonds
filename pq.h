@@ -20,8 +20,14 @@ class lazy_insert_leftist {
     std::vector<lt_node*> unprocessed;
 
   public:
-    insert(priority_t new_item);
+    void insert(priority_t new_item);
     priority_t find_min();
     void delete_min();
     bool empty();
+};
+
+class base_priority {
+  virtual bool is_less (const base_priority& other)=0;
+
+
 };
