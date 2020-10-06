@@ -29,12 +29,33 @@ class Edge {
 };
 
 class bbRec: public base_priority {
-
+  bool is_less (const base_priority& other) {
+    return true;
+  }
+  int evaluate() {
+    return 1;
+  }
 
 };
 
-class buRec: public base_Priority {
+class buRec: public base_priority {
+  bool is_less (const base_priority& other) {
+    return true;
+  }
+  int evaluate() {
+    return 1;
 
+  }
+
+};
+
+class zRec : public base_priority {
+  bool is_less (const base_priority& other) {
+    return true;
+  }
+  int evaluate() {
+    return 1;
+  }
 
 };
 
@@ -47,15 +68,17 @@ class Graph {
   redZPQ_t redZPQ;
   public:
   int find_bb_min(Edge& min_edge) {
-    return bbPQ.find_min(min_edge);
+  //  return bbPQ.find_min(min_edge);
   }
+  void init_dual_variables();
 
 
 };
 
 
 class Matching {
-
+public:
+  void init();
 
 
 };
