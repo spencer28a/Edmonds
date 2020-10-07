@@ -73,6 +73,7 @@ int main() {
   PQ.insert(int_priority(8));
   while (not PQ.empty()) {
     int ele = PQ.find_min().evaluate();
+    PQ.check_invarient();
     PQ.delete_min();
     std::cout << ele << std::endl;
   }

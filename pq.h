@@ -84,7 +84,7 @@ class lazy_insert_leftist {
       if (root != NULL) {
         return root->priority;
       } else {
-        printf("Impossiblr thing happened\n");
+        printf("Impossible thing happened\n");
       }
     }
 
@@ -97,6 +97,53 @@ class lazy_insert_leftist {
 
     bool empty() {
       return unprocessed.empty() && root == NULL;
+    }
+
+    bool check_invarient() {
+      return check_invarientw(root);
+    }
+
+    bool check_invarientw(lt_node* node) {
+      if (node->left == NULL) {
+        if (node->right !=NULL || node->depth != 1) {
+          printf("error bad leaf node");
+          return false;
+        }
+        return true;
+      } 
+      if (node->priority.evaluate() > node->left->priority.evaluate()) {
+        printf("error: left child is less than parent");
+        return false;
+      }
+      if (!check_invarientw(node->left)) {
+        printf("Error: problem in left child");
+        return false;
+      }
+      if (node->right == NULL) {
+        if (node->depth != 1) {
+          printf("Error: leaf node's depth computed incorrectly");
+          return false;
+        }
+        return true;
+      }
+      if (node->depth != node->right->depth+1) {
+        printf("error node's depth computed incorrectly");
+        return false;
+      }
+      // neither child is NULL
+      if (!check_invarientw(node->right)) {
+        printf("Error: problem in right child");
+        return false;
+      }
+       if (node->priority.evaluate() > node->right->priority.evaluate()) {
+        printf("error: right child is less than parent");
+        return false;
+      }
+      if (node->right->depth > node->left->depth) {
+        printf("Error: badly shaped tree-right child is higher than left");
+        return false;
+      }
+      return true;
     }
 };
 
