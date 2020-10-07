@@ -35,12 +35,17 @@ class lazy_insert_leftist {
         t1 = t3;
       }
       t1->right = unite(t1->right, t2);
-      if (t1->right->depth > t1->left->depth) {
+      if (t1->right != NULL && 
+          (t1->left == NULL) ||(t1->right->depth > t1->left->depth)) {
         lt_node* tt = t1->right;
         t1->right = t1->left;
         t1->left = tt;
       }
-      t1->depth = t1->right->depth+1;
+      if (t1->right == NULL) {
+        t1->depth = 1;
+      } else {
+        t1->depth = t1->right->depth+1;
+      }
     }
 
     lt_node* make_lt_node(priority_t priority) {
@@ -50,11 +55,15 @@ class lazy_insert_leftist {
 
 
   public:
+    lazy_insert_leftist() : root(NULL) { }
     void insert(priority_t new_item) {
       unprocessed.push_back(new_item);
     }
 
     priority_t find_min() {
+      if (empty()) {
+        printf("!!! error find_min of empty PQ\n");
+      }
       std::queue<lt_node*> temp_trees;
       for (int index =0; index < unprocessed.size(); ++index) {
         temp_trees.push(make_lt_node(unprocessed[index]));
@@ -71,7 +80,11 @@ class lazy_insert_leftist {
       }
       if (!temp_trees.empty())  {
         root = unite(root, temp_trees.front());
+      }
+      if (root != NULL) {
         return root->priority;
+      } else {
+        printf("Impossiblr thing happened\n");
       }
     }
 

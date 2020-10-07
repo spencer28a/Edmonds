@@ -8,7 +8,12 @@ template <typename priority_t>
   }
     
   priority_t lazy_insert_leftist::find_min() {
+    if (empty()) {
+      printf("findmin from empty PQ\n");
+      return NULL;
+    }
     queue<lt_node*> temp_trees;
+    printf("%d unprocessed elements", temp_trees.size());
     for (int index =0; index < unprocessed.size(); ++index) {
       temp_trees.push_back(make_lt_node(unprocessed[i]));
     }

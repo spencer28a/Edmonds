@@ -1,2 +1,2 @@
 language = "bash"
-run = "c++ main.cpp"
+run = "c++ main.cpp -g"
