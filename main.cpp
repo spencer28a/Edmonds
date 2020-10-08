@@ -77,5 +77,22 @@ int main() {
     PQ.delete_min();
     std::cout << ele << std::endl;
   }
-
+  printf("starting smoke test part 2\n");
+  // smoke test -- part 2 insertion into an empty PQ
+  PQ.insert(int_priority(3));
+  PQ.insert(int_priority(1));
+  PQ.insert(int_priority(4));
+  PQ.insert(int_priority(1));
+  PQ.insert(int_priority(5));
+  PQ.insert(int_priority(9));
+  PQ.insert(int_priority(2));
+  PQ.insert(int_priority(6));
+  PQ.insert(int_priority(7));
+  PQ.insert(int_priority(8));
+  while (not PQ.empty()) {
+    int ele = PQ.find_min().evaluate();
+    PQ.check_invarient();
+    PQ.delete_min();
+    std::cout << ele << std::endl;
+  }
 }
